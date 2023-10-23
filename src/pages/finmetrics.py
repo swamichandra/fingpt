@@ -26,7 +26,7 @@ from src.fields2 import inc_stat, inc_stat_attributes, bal_sheet, balance_sheet_
 
 #OPENAI_API_KEY = st.sidebar.text_input("Enter OpenAI API key", type="password")
 #START LLM portions 
-if os.getenv("OPENAI_API_KEY") is not None:
+if os.getenv("openai_api_key") is not None:
     pass
 else:
     os.environ["OPENAI_API_KEY"] = st.secrets["openai_api_key"]
