@@ -12,7 +12,7 @@ st.set_page_config(page_title="Finance Metrics Reviews", page_icon=":bar_chart:"
 #st.write(f'<style>{css.v1}</style>', unsafe_allow_html=True)
 st.title(":chart_with_upwards_trend: Finance Metrics Review")
 st.info("""
-Input your desired company's ticker symbol, toggle the needed financial metrics, and hit Generate Insights. Wait a few moments for the system to compile the data and insights tailored to the selected company. Download a comprehensive PDF report.
+Input your desired company's ticker symbol, toggle the needed financial insights, and hit Generate Insights. Wait a few moments for the system to compile the data and insights tailored to the selected company. Download a comprehensive PDF report.
 """)
         
 
