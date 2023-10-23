@@ -25,7 +25,7 @@ from src.pdf_gen import gen_pdf
 from src.fields2 import inc_stat, inc_stat_attributes, bal_sheet, balance_sheet_attributes, cashflow, cashflow_attributes
 
 #OPENAI_API_KEY = st.sidebar.text_input("Enter OpenAI API key", type="password")
-OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
+OPENAI_API_KEY = st.secrets["openai_api_key"]
 
 if not OPENAI_API_KEY:
     st.error("Please enter your OpenAI API Key")
