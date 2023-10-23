@@ -11,7 +11,7 @@ st.set_page_config(page_title="Financial Insights Companion", page_icon="📊", 
 st.write(f'<style>{css.v1}</style>', unsafe_allow_html=True)
 st.title("📊 Finance Metrics Review")
 st.info("""
-Input your desired company's ticker symbol, toggle the needed financial insights, and hit Generate Insights. Wait a few moments for the system to compile the data and insights tailored to the selected company. Download a comprehensive PDF report.
+Pick your desired company's ticker symbol, toggle the required financial insights, and hit Generate Insights. Wait a few moments for the system to compile the data and insights tailored to the selected company. Download a comprehensive PDF report.
 """)
 
 from src.income_statement import income_statement
