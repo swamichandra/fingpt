@@ -9,23 +9,6 @@ import streamlit as st
 
 st.set_page_config(page_title="Finance Metrics Reviews", page_icon=":bar_chart:", layout="wide", initial_sidebar_state="collapsed")
 
-st.markdown("""
-        <style>
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed&display=swap');
-
-        html, body, [class*="css"] {
-            font-family: 'IBM Plex Sans Condensed', sans-serif;
-        }
-
-               .block-container {
-                    padding-top: 1rem;
-                    padding-bottom: 0rem;
-                    padding-left: 1rem;
-                    padding-right: 1rem;
-                }
-        </style>
-        """, unsafe_allow_html=True)
-
 st.title(":chart_with_upwards_trend: Finance Metrics Review")
 st.info("""
 Input your desired company's ticker symbol, toggle the needed financial metrics, and hit Generate Insights. Wait a few moments for the system to compile the data and insights tailored to the selected company. Download a comprehensive PDF report.
