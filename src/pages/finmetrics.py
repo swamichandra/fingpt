@@ -1,4 +1,5 @@
 import sys
+import os
 from pathlib import Path
 script_dir = Path(__file__).resolve().parent
 project_root = script_dir.parent
@@ -11,7 +12,8 @@ st.set_page_config(page_title="Finance Metrics Reviews", page_icon=":bar_chart:"
 
 st.title(":chart_with_upwards_trend: Finance Metrics Review")
 st.info("""
-Simply input the ticker symbol of your desired company and hit the 'Generate Insights' button. Allow a few moments for the system to compile the data and insights tailored to the selected company. Once done, you have the option to browse through these insights directly on the platform or download a comprehensive report by selecting 'Generate PDF', followed by 'Download PDF'.
+Input your desired company's ticker symbol, choose the financial metrics toggle button, and hit 'Generate Insights'. 
+Wait a few moments for the system to compile the data and insights tailored to the selected company. Then, browse the insights on the platform or download a comprehensive PDF report.
 """)
         
 
