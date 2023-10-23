@@ -1,6 +1,6 @@
 import sys
 from pathlib import Path
-import css
+#import css
 script_dir = Path(__file__).resolve().parent
 project_root = script_dir.parent
 sys.path.append(str(project_root))
@@ -9,7 +9,7 @@ sys.path.append(str(project_root))
 import streamlit as st
 
 st.set_page_config(page_title="Finance Metrics Reviews", page_icon=":bar_chart:", layout="wide", initial_sidebar_state="collapsed")
-st.write(f'<style>{css.v1}</style>', unsafe_allow_html=True)
+#st.write(f'<style>{css.v1}</style>', unsafe_allow_html=True)
 st.title(":chart_with_upwards_trend: Finance Metrics Review")
 st.info("""
 Input your desired company's ticker symbol, toggle the needed financial metrics, and hit Generate Insights. Wait a few moments for the system to compile the data and insights tailored to the selected company. Download a comprehensive PDF report.
