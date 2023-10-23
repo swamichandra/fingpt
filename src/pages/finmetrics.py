@@ -68,7 +68,7 @@ else:
 
     with col2:
         ticker = st.text_input("**Enter ticker symbol**")
-        st.warning("Example Tickers: Apple Inc. - AAPL, Microsoft Corporation - MSFT, Tesla Inc. - TSLA")
+        st.info("Apple - AAPL, Microsoft - MSFT, Tesla - TSLA, NVIDIA - NVDA, J&J - JNJ, Coca-Cola Company - KO")
 
 
         for insight in inc_stat_attributes:
