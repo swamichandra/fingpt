@@ -107,12 +107,10 @@ else:
 
                 with st.status("**Generating Insights...**"):
 
-
                     if not st.session_state.company_overview:
                         st.write("Getting company overview...")
                         st.session_state.company_overview = company_overview(ticker)
-                        
-                    
+                                           
                     if any(income_statement_feature_list):
                         st.write("Generating income statement insights...")
                         for i, insight in enumerate(inc_stat_attributes):
@@ -125,7 +123,6 @@ else:
                         
                         for key, value in response["insights"].items():
                             st.session_state[key] = value
-                    
                     
                     if any(balance_sheet_feature_list):
                         st.write("Generating balance sheet insights...")
@@ -140,14 +137,11 @@ else:
                         for key, value in response["insights"].items():
                             st.session_state[key] = value
                     
-                    
                     if any(cash_flow_feature_list):
                         st.write("Generating cash flow insights...")
                         for i, insight in enumerate(cashflow_attributes):
                             if st.session_state[insight]:
                                    cash_flow_feature_list[i] = False
-
-                        
 
                         response = cash_flow(ticker, cash_flow_feature_list, OPENAI_API_KEY)
 
@@ -184,10 +178,7 @@ else:
                         mime="application/pdf"
                     )
 
-            
-
         tab1, tab2, tab3, tab4, tab5 = st.tabs(["Company Overview", "Income Statement", "Balance Sheet", "Cash Flow", "News Sentiment"])
-
 
         if st.session_state.company_overview:
             with tab1:
