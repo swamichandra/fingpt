@@ -8,7 +8,7 @@ sys.path.append(str(project_root))
 
 import streamlit as st
 
-st.set_page_config(page_title="Finance Metrics Reviews", page_icon=":bar_chart:", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Financial Insights Companion", page_icon="📊", layout="wide", initial_sidebar_state="collapsed")
 #st.write(f'<style>{css.v1}</style>', unsafe_allow_html=True)
 st.title(":chart_with_upwards_trend: Finance Metrics Review")
 st.info("""
