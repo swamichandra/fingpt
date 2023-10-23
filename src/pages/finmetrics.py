@@ -33,12 +33,6 @@ if os.getenv("OPENAI_API_KEY") is not None:
 else:
     os.environ["OPENAI_API_KEY"] = st.secrets["openai_api_key"]
 
-
-if not os.getenv["OPENAI_API_KEY"]
-    st.error("Please enter your OpenAI API Key")
-else:
-
-
     col1, col2 = st.columns([0.25, 0.75], gap="medium")
 
     with col1:
