@@ -29,7 +29,7 @@ from src.fields2 import inc_stat, inc_stat_attributes, bal_sheet, balance_sheet_
 if os.getenv("OPENAI_API_KEY") is not None:
     pass
 else:
-    os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+    os.environ["OPENAI_API_KEY"] = st.secrets["openai_api_key"]
 
 
 if not OPENAI_API_KEY:
