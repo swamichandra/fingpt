@@ -38,7 +38,7 @@ else:
         ### Select Insights
         """)
         with st.expander("**Income Statement Insights**", expanded=True):
-            revenue_health = st.toggle("Revenue Health")
+            revenue_health = st.toggle("Revenue Health", value=False)
             operational_efficiency = st.toggle("Operational Efficiency")
             r_and_d_focus = st.toggle("R&D Focus")
             debt_management = st.toggle("Debt Management")
@@ -48,7 +48,7 @@ else:
             income_statement_feature_list = [revenue_health, operational_efficiency, r_and_d_focus, debt_management, profit_retention]
 
         with st.expander("**Balance Sheet Insights**", expanded=True):
-            liquidity_position = st.toggle("Liquidity Position")
+            liquidity_position = st.toggle("Liquidity Position", value=False)
             assets_efficiency = st.toggle("Operational efficiency")
             capital_structure = st.toggle("Capital Structure")
             inventory_management = st.toggle("Inventory Management")
@@ -58,7 +58,7 @@ else:
 
         with st.expander("**Cash Flow Insights**", expanded=True):
             operational_cash_efficiency = st.toggle("Operational Cash Efficiency")
-            investment_capability = st.toggle("Investment Capability")
+            investment_capability = st.toggle("Investment Capability", value=False)
             financial_flexibility = st.toggle("Financial Flexibility")
             dividend_sustainability = st.toggle("Dividend Sustainability")
             debt_service_capability = st.toggle("Debt Service Capability")
