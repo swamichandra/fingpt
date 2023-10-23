@@ -11,6 +11,12 @@ st.set_page_config(page_title="Finance Metrics Reviews", page_icon=":bar_chart:"
 
 st.markdown("""
         <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed&display=swap');
+
+        html, body, [class*="css"] {
+            font-family: 'IBM Plex Sans Condensed', sans-serif;
+        }
+
                .block-container {
                     padding-top: 1rem;
                     padding-bottom: 0rem;
