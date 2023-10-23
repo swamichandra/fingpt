@@ -16,10 +16,6 @@ st.write(f'<style>{css.v1}</style>', unsafe_allow_html=True)
 
 st.title(":money_with_wings: FinSight \n\n **Financial Insights at Your Fingertip**")
 
-st.balloons()
-with open("docs/news.md", "r") as f:
-    st.success(f.read())
-
 with open("docs/main.md", "r") as f:
     st.info(f.read())
 
