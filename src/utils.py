@@ -45,7 +45,8 @@ MODEL_VERSION_ID = '4aa760933afa4a33a0e5b4652cfa92fa'
 
 def get_model(model_name, api_key):
     if model_name == "openai":
-        model = ChatOpenAI(openai_api_key=api_key, model_name="gpt-3.5-turbo")
+        model = ChatOpenAI(openai_api_key=api_key, model_name="gpt-4")
+        #model = ChatOpenAI(openai_api_key=api_key, model_name="gpt-3.5-turbo")
    
     return model
 
