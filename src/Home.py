@@ -5,8 +5,8 @@ script_dir = Path(__file__).resolve().parent
 project_root = script_dir.parent
 sys.path.append(str(project_root))
 
-st.write(script_dir)
-st.write(project_root)
+st.info(script_dir)
+st.info(project_root)
 
 import streamlit as st
 
