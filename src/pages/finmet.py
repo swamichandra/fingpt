@@ -24,8 +24,12 @@ from src.utils import round_numeric, format_currency, create_donut_chart, create
 from src.pdf_gen import gen_pdf
 from src.fields2 import inc_stat, inc_stat_attributes, bal_sheet, balance_sheet_attributes, cashflow, cashflow_attributes
 
-OPENAI_API_KEY = st.sidebar.text_input("Enter OpenAI API key", type="password")
-
+#OPENAI_API_KEY = st.sidebar.text_input("Enter OpenAI API key", type="password")
+#START LLM portions 
+if os.getenv("OPENAI_API_KEY") is not None:
+    pass
+else:
+    os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
 
 if not OPENAI_API_KEY:
