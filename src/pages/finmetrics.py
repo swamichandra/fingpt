@@ -65,8 +65,12 @@ else:
 
 
     with col2:
-        ticker = st.text_input("**Enter ticker symbol**")
-        st.info("Apple - AAPL, Microsoft - MSFT, Tesla - TSLA, NVIDIA - NVDA, J&J - JNJ, Coca-Cola Company - KO")
+        #ticker = st.text_input("**Enter ticker symbol**")
+
+        ticker = st.multiselect('What are your favorite colors', ['MSFT', 'TSLA', 'NVDA', 'JNJ'], max_selections=1)
+
+        
+        #st.info("Apple - AAPL, Microsoft - MSFT, Tesla - TSLA, NVIDIA - NVDA, J&J - JNJ, Coca-Cola Company - KO")
 
 
         for insight in inc_stat_attributes:
