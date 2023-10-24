@@ -7,7 +7,6 @@ sys.path.append(str(project_root))
 import streamlit as st
 
 st.set_page_config(page_title="Financial Insights Companion", page_icon="📊", layout="wide", initial_sidebar_state="collapsed")
-#st.write(f'<style>{css.v1}</style>', unsafe_allow_html=True)
 st.title("📊 Finance Insights Companion")
 st.info("""
 Pick your desired company's ticker symbol, toggle the required financial insights, and hit Generate Insights. Wait a few moments for the system to compile the data and insights tailored to the selected company. Download a comprehensive PDF report.
@@ -22,8 +21,7 @@ from src.utils import round_numeric, format_currency, create_donut_chart, create
 from src.pdf_gen import gen_pdf
 from src.fields2 import inc_stat, inc_stat_attributes, bal_sheet, balance_sheet_attributes, cashflow, cashflow_attributes
 
-#OPENAI_API_KEY = st.sidebar.text_input("Enter OpenAI API key", type="password")
-OPENAI_API_KEY = st.secrets["openai_api_key"]
+OPENAI_API_KEY = st.sidebar.text_input("Enter OpenAI API key", type="password")
 
 if not OPENAI_API_KEY:
     st.error("Please enter your OpenAI API Key")
@@ -35,7 +33,7 @@ else:
         ### Select Insights
         """)
         with st.expander("**Income Statement Insights**", expanded=True):
-            revenue_health = st.toggle("Revenue Health", value=True)
+            revenue_health = st.toggle("Revenue Health")
             operational_efficiency = st.toggle("Operational Efficiency")
             r_and_d_focus = st.toggle("R&D Focus")
             debt_management = st.toggle("Debt Management")
@@ -45,7 +43,7 @@ else:
             income_statement_feature_list = [revenue_health, operational_efficiency, r_and_d_focus, debt_management, profit_retention]
 
         with st.expander("**Balance Sheet Insights**", expanded=True):
-            liquidity_position = st.toggle("Liquidity Position", value=True)
+            liquidity_position = st.toggle("Liquidity Position")
             assets_efficiency = st.toggle("Operational efficiency")
             capital_structure = st.toggle("Capital Structure")
             inventory_management = st.toggle("Inventory Management")
@@ -55,9 +53,9 @@ else:
 
         with st.expander("**Cash Flow Insights**", expanded=True):
             operational_cash_efficiency = st.toggle("Operational Cash Efficiency")
-            investment_capability = st.toggle("Investment Capability", value=True)
+            investment_capability = st.toggle("Investment Capability")
             financial_flexibility = st.toggle("Financial Flexibility")
-            dividend_sustainability = st.toggle("Dividend Sustainability", value=True)
+            dividend_sustainability = st.toggle("Dividend Sustainability")
             debt_service_capability = st.toggle("Debt Service Capability")
 
             cash_flow_feature_list = [operational_cash_efficiency, investment_capability, financial_flexibility, dividend_sustainability, debt_service_capability]
@@ -65,11 +63,7 @@ else:
 
     with col2:
         ticker = st.text_input("**Enter ticker symbol**")
-
-        #ticker = st.multiselect('Pick your ticker symbol', ['MMM', 'AOS', 'ABT', 'ABBV', 'ACN', 'ADM', 'ADBE', 'ADP', 'AES', 'AFL', 'A', 'ABNB', 'APD', 'AKAM', 'ALK', 'ALB', 'ARE', 'ALGN', 'ALLE', 'LNT', 'ALL', 'GOOGL', 'GOOG', 'MO', 'AMZN', 'AMCR', 'AMD', 'AEE', 'AAL', 'AEP', 'AXP', 'AIG', 'AMT', 'AWK', 'AMP', 'AME', 'AMGN', 'APH', 'ADI', 'ANSS', 'AON', 'APA', 'AAPL', 'AMAT', 'APTV', 'ACGL', 'ANET', 'AJG', 'AIZ', 'T', 'ATO', 'ADSK', 'AZO', 'AVB', 'AVY', 'AXON', 'BKR', 'BALL', 'BAC', 'BBWI', 'BAX', 'BDX', 'WRB', 'BRK.B', 'BBY', 'BIO', 'TECH', 'BIIB', 'BLK', 'BX', 'BK', 'BA', 'BKNG', 'BWA', 'BXP', 'BSX', 'BMY', 'AVGO', 'BR', 'BRO', 'BF.B', 'BG', 'CHRW', 'CDNS', 'CZR', 'CPT', 'CPB', 'COF', 'CAH', 'KMX', 'CCL', 'CARR', 'CTLT', 'CAT', 'CBOE', 'CBRE', 'CDW', 'CE', 'COR', 'CNC', 'CNP', 'CDAY', 'CF', 'CRL', 'SCHW', 'CHTR', 'CVX', 'CMG', 'CB', 'CHD', 'CI', 'CINF', 'CTAS', 'CSCO', 'C', 'CFG', 'CLX', 'CME', 'CMS', 'KO', 'CTSH', 'CL', 'CMCSA', 'CMA', 'CAG', 'COP', 'ED', 'STZ', 'CEG', 'COO', 'CPRT', 'GLW', 'CTVA', 'CSGP', 'COST', 'CTRA', 'CCI', 'CSX', 'CMI', 'CVS', 'DHI', 'DHR', 'DRI', 'DVA', 'DE', 'DAL', 'XRAY', 'DVN', 'DXCM', 'FANG', 'DLR', 'DFS', 'DIS', 'DG', 'DLTR', 'D', 'DPZ', 'DOV', 'DOW', 'DTE', 'DUK', 'DD', 'EMN', 'ETN', 'EBAY', 'ECL', 'EIX', 'EW', 'EA', 'ELV', 'LLY', 'EMR', 'ENPH', 'ETR', 'EOG', 'EPAM', 'EQT', 'EFX', 'EQIX', 'EQR', 'ESS', 'EL', 'ETSY', 'EG', 'EVRG', 'ES', 'EXC', 'EXPE', 'EXPD', 'EXR', 'XOM', 'FFIV', 'FDS', 'FICO', 'FAST', 'FRT', 'FDX', 'FITB', 'FSLR', 'FE', 'FIS', 'FI', 'FLT', 'FMC', 'F', 'FTNT', 'FTV', 'FOXA', 'FOX', 'BEN', 'FCX', 'GRMN', 'IT', 'GEHC', 'GEN', 'GNRC', 'GD', 'GE', 'GIS', 'GM', 'GPC', 'GILD', 'GL', 'GPN', 'GS', 'HAL', 'HIG', 'HAS', 'HCA', 'PEAK', 'HSIC', 'HSY', 'HES', 'HPE', 'HLT', 'HOLX', 'HD', 'HON', 'HRL', 'HST', 'HWM', 'HPQ', 'HUBB', 'HUM', 'HBAN', 'HII', 'IBM', 'IEX', 'IDXX', 'ITW', 'ILMN', 'INCY', 'IR', 'PODD', 'INTC', 'ICE', 'IFF', 'IP', 'IPG', 'INTU', 'ISRG', 'IVZ', 'INVH', 'IQV', 'IRM', 'JBHT', 'JKHY', 'J', 'JNJ', 'JCI', 'JPM', 'JNPR', 'K', 'KVUE', 'KDP', 'KEY', 'KEYS', 'KMB', 'KIM', 'KMI', 'KLAC', 'KHC', 'KR', 'LHX', 'LH', 'LRCX', 'LW', 'LVS', 'LDOS', 'LEN', 'LIN', 'LYV', 'LKQ', 'LMT', 'L', 'LOW', 'LULU', 'LYB', 'MTB', 'MRO', 'MPC', 'MKTX', 'MAR', 'MMC', 'MLM', 'MAS', 'MA', 'MTCH', 'MKC', 'MCD', 'MCK', 'MDT', 'MRK', 'META', 'MET', 'MTD', 'MGM', 'MCHP', 'MU', 'MSFT', 'MAA', 'MRNA', 'MHK', 'MOH', 'TAP', 'MDLZ', 'MPWR', 'MNST', 'MCO', 'MS', 'MOS', 'MSI', 'MSCI', 'NDAQ', 'NTAP', 'NFLX', 'NEM', 'NWSA', 'NWS', 'NEE', 'NKE', 'NI', 'NDSN', 'NSC', 'NTRS', 'NOC', 'NCLH', 'NRG', 'NUE', 'NVDA', 'NVR', 'NXPI', 'ORLY', 'OXY', 'ODFL', 'OMC', 'ON', 'OKE', 'ORCL', 'OTIS', 'PCAR', 'PKG', 'PANW', 'PARA', 'PH', 'PAYX', 'PAYC', 'PYPL', 'PNR', 'PEP', 'PFE', 'PCG', 'PM', 'PSX', 'PNW', 'PXD', 'PNC', 'POOL', 'PPG', 'PPL', 'PFG', 'PG', 'PGR', 'PLD', 'PRU', 'PEG', 'PTC', 'PSA', 'PHM', 'QRVO', 'PWR', 'QCOM', 'DGX', 'RL', 'RJF', 'RTX', 'O', 'REG', 'REGN', 'RF', 'RSG', 'RMD', 'RVTY', 'RHI', 'ROK', 'ROL', 'ROP', 'ROST', 'RCL', 'SPGI', 'CRM', 'SBAC', 'SLB', 'STX', 'SEE', 'SRE', 'NOW', 'SHW', 'SPG', 'SWKS', 'SJM', 'SNA', 'SEDG', 'SO', 'LUV', 'SWK', 'SBUX', 'STT', 'STLD', 'STE', 'SYK', 'SYF', 'SNPS', 'SYY', 'TMUS', 'TROW', 'TTWO', 'TPR', 'TRGP', 'TGT', 'TEL', 'TDY', 'TFX', 'TER', 'TSLA', 'TXN', 'TXT', 'TMO', 'TJX', 'TSCO', 'TT', 'TDG', 'TRV', 'TRMB', 'TFC', 'TYL', 'TSN', 'USB', 'UDR', 'ULTA', 'UNP', 'UAL', 'UPS', 'URI', 'UNH', 'UHS', 'VLO', 'VTR', 'VLTO', 'VRSN', 'VRSK', 'VZ', 'VRTX', 'VFC', 'VTRS', 'VICI', 'V', 'VMC', 'WAB', 'WBA', 'WMT', 'WBD', 'WM', 'WAT', 'WEC', 'WFC', 'WELL', 'WST', 'WDC', 'WRK', 'WY', 'WHR', 'WMB', 'WTW', 'GWW', 'WYNN', 'XEL', 'XYL', 'YUM', 'ZBRA', 'ZBH', 'ZION', 'ZTS'], max_selections=1)
-
-        
-        #st.info("Apple - AAPL, Microsoft - MSFT, Tesla - TSLA, NVIDIA - NVDA, J&J - JNJ, Coca-Cola Company - KO")
+        st.warning("Example Tickers: Apple Inc. - AAPL, Microsoft Corporation - MSFT, Tesla Inc. - TSLA")
 
 
         for insight in inc_stat_attributes:
@@ -108,10 +102,12 @@ else:
 
                 with st.status("**Generating Insights...**"):
 
+
                     if not st.session_state.company_overview:
                         st.write("Getting company overview...")
                         st.session_state.company_overview = company_overview(ticker)
-                                           
+                        
+                    
                     if any(income_statement_feature_list):
                         st.write("Generating income statement insights...")
                         for i, insight in enumerate(inc_stat_attributes):
@@ -124,6 +120,7 @@ else:
                         
                         for key, value in response["insights"].items():
                             st.session_state[key] = value
+                    
                     
                     if any(balance_sheet_feature_list):
                         st.write("Generating balance sheet insights...")
@@ -138,11 +135,14 @@ else:
                         for key, value in response["insights"].items():
                             st.session_state[key] = value
                     
+                    
                     if any(cash_flow_feature_list):
                         st.write("Generating cash flow insights...")
                         for i, insight in enumerate(cashflow_attributes):
                             if st.session_state[insight]:
                                    cash_flow_feature_list[i] = False
+
+                        
 
                         response = cash_flow(ticker, cash_flow_feature_list, OPENAI_API_KEY)
 
@@ -179,7 +179,10 @@ else:
                         mime="application/pdf"
                     )
 
+            
+
         tab1, tab2, tab3, tab4, tab5 = st.tabs(["Company Overview", "Income Statement", "Balance Sheet", "Cash Flow", "News Sentiment"])
+
 
         if st.session_state.company_overview:
             with tab1:
