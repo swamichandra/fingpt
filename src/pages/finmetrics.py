@@ -5,10 +5,9 @@ project_root = script_dir.parent
 sys.path.append(str(project_root))
 
 import streamlit as st
-import css
 
 st.set_page_config(page_title="Financial Insights Companion", page_icon="📊", layout="wide", initial_sidebar_state="collapsed")
-st.write(f'<style>{css.v1}</style>', unsafe_allow_html=True)
+#st.write(f'<style>{css.v1}</style>', unsafe_allow_html=True)
 st.title("📊 Finance Insights Companion")
 st.info("""
 Pick your desired company's ticker symbol, toggle the required financial insights, and hit Generate Insights. Wait a few moments for the system to compile the data and insights tailored to the selected company. Download a comprehensive PDF report.
