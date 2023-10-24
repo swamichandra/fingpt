@@ -42,6 +42,7 @@ def company_overview(symbol):
             "Address": data.get("Address"),
             "FiscalYearEnd": data.get("FiscalYearEnd"),
             "LatestQuarter": data.get("LatestQuarter"),
+            "50DayMovingAverage": data.get("50DayMovingAverage"),
             "MarketCapitalization": safe_float(data.get("MarketCapitalization")),
         }
         
